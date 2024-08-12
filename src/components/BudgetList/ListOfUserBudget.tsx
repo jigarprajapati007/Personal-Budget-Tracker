@@ -21,7 +21,7 @@ import {
 import { Toaster } from "../Toaster/Toaster.tsx";
 import { Button, TextField } from "@mui/material";
 import { PieChart } from "react-minimal-pie-chart";
-import { totalAmount } from "../utils/calculateFunction.tsx";
+import { totalAmount } from "../../utils/calculateFunction.tsx";
 import { CSVLink, CSVDownload } from "react-csv";
 
 export const ListOfUserBudget = () => {
