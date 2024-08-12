@@ -48,10 +48,17 @@ export const ListOfUserBudget = () => {
     totalAmount("income", data, setTotalIncome, setTotalExpense);
     totalAmount("expense", data, setTotalIncome, setTotalExpense);
     findExpenseRent();
-    setTimeout(() => {
-      setIsLoading(false);
-    }, 1000);
   }, [data]);
+
+  useEffect(() => {
+    if (budget?.length > 0) {
+      setTimeout(() => {
+        setIsLoading(false);
+      }, 1000);
+    } else {
+      setIsLoading(false);
+    }
+  }, []);
 
   const findExpenseRent = () => {
     let totalRent = 0;
@@ -74,7 +81,7 @@ export const ListOfUserBudget = () => {
     <userContext.Provider value={{ userData, setEmptyToUserData }}>
       <div className="container">
         <Header />
-        {budget?.length > 0 &&Object.values(userData)?.length ==0 &&(
+        {budget?.length > 0 && Object.values(userData)?.length == 0 && (
           <div className="pie-chart">
             <h3 className="h3-piechart-title">Information</h3>
             <PieChart
@@ -191,9 +198,13 @@ export const ListOfUserBudget = () => {
                         </Button>
                       </div>
                     )}
-                      <CSVLink data={budget} className="csv" filename={'Budget_Report.csv'}>
-                          Export CSV
-                        </CSVLink>
+                    <CSVLink
+                      data={budget}
+                      className="csv"
+                      filename={"Budget_Report.csv"}
+                    >
+                      Export CSV
+                    </CSVLink>
                   </div>
                   <Table sx={{ minWidth: 650 }} aria-label="simple table">
                     <TableHead>
